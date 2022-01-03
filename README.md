@@ -1,2 +1,3 @@
-# ArvoreBinaria
- Árvore binária criada com Struct
+# Árvore Binária
+
+ Árvore binária implementada com Struct.
