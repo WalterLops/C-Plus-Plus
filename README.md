@@ -1,3 +1,3 @@
-# Árvore Binária
+# C Plus Plus
 
- Árvore binária implementada com Struct.
+ Algoritmos básicos em estruturas de dados com c++.
