@@ -91,14 +91,14 @@ bool Arvore :: Pesquisar (No *no_atual, int info){
     if (no_atual == NULL){
         return false;
     }
-    //se a inforrmação for encontrada
+    //se a informação for encontrada
     else if (info == no_atual -> info){
         return true;
     }
     //decidir qual direção seguir
     else {
 
-        //se informação menor que o pai, vai pra sequerda
+        //se informação menor que o pai, vai pra esquerda
         if (info < no_atual->info)
         {
             return Pesquisar(no_atual->esquerda, info);
@@ -160,20 +160,20 @@ No *Arvore :: Excluir (No *no_atual, int info){
 
         //caso 3: no encontrado tem dois filhos
         else {
-            //balanceando a árvore com valor maior do que a raiz atual
+            //balanceando a árvore com numero maior do que a raiz atual
 
-            //recebendo a sub-árvore a direita para encontra  o menor valor que deixará a árvore balanceada
+            //recebendo a sub-árvore a direita para encontra  o menor numero que deixará a árvore balanceada
             no_temp = no_atual -> direita;
 
-            //encontrado o menor valor da sub-árvore a direita
+            //encontrado o menor numero da sub-árvore a direita
             while (no_temp -> esquerda != NULL){
                 no_temp = no_temp -> esquerda;
             }
 
-            //substituindo o valor na árvore
+            //substituindo o numero na árvore
             no_atual -> info = no_temp -> info;
 
-            //pesquisando e excluindo a origem do valor atribuído na linha anterior
+            //pesquisando e excluindo a origem do numero atribuído na linha anterior
             no_atual -> direita = Excluir (no_atual -> direita, no_temp -> info);
 
             //atualizando o no pai
@@ -233,9 +233,7 @@ No *Arvore ::Del_Arvore(No *no_atual)
     }
     return no_atual;
 
-
 }
-
 
 //______________________________Função principal______________________________________
 int main (){
@@ -243,14 +241,14 @@ int main (){
     Arvore arvore;
     arvore.criar ();
     int menu;
-    int no_valor;
+    int no_numero;
         arvore.raiz = arvore.Inserir (arvore.raiz, 5);
         arvore.raiz = arvore.Inserir (arvore.raiz, 3);
         arvore.raiz = arvore.Inserir (arvore.raiz, 1);
         arvore.raiz = arvore.Inserir (arvore.raiz, 4);
         arvore.raiz = arvore.Inserir (arvore.raiz, 7);
     do{
-        cout <<"\n\nMenu Arvore. Escolha uma opcao"<<endl;
+        cout <<"\nMenu Arvore. Escolha uma opcao"<<endl;
         cout <<"---|1: Inserir novo no"<<endl;
         cout <<"---|2: Pesquisar"<<endl;
         cout <<"---|3: Excluir no"<<endl;
@@ -266,29 +264,35 @@ int main (){
         switch (menu)
         {
         case 1:
-            cout <<"Digite os valores e pra terminar digite '0': "<<endl;
+            cout <<"Digite os numeros inteiros e pra terminar digite '0': "<<endl;
             do{
-                cin >> no_valor;
-                if(no_valor != 0) {
-                    arvore.raiz = arvore.Inserir (arvore.raiz, no_valor);
+                cin >> no_numero;
+                if(no_numero != 0) {
+                    arvore.raiz = arvore.Inserir (arvore.raiz, no_numero);
                 }
                 
-            }while (no_valor != 0);
+            }while (no_numero != 0);
             break;
 
         case 2:
-            cout <<"Digite um valor: "; cin >> no_valor;
-            if (arvore.Pesquisar (arvore.raiz, no_valor) == 1){
-                cout<<"O valor digitado esta contido na arvore"<<endl;
+            cout <<"Digite um numero: "; cin >> no_numero;
+            if (arvore.Pesquisar (arvore.raiz, no_numero) == 1){
+                cout <<"\n------------------------------------------"<<endl;
+                cout<<"O numero digitado esta contido na arvore"<<endl;
+                cout <<"------------------------------------------"<<endl;
             }
             else{
-                cout<<"O valor digitado nao esta contido na arvore"<<endl;
+                cout <<"\n--------------------------------------------"<<endl;
+                cout<<"O numero digitado nao esta contido na arvore"<<endl;
+                cout <<"--------------------------------------------"<<endl;
             }
             break;
         case 3: //função excluir
-            cout <<"Digite o valor a ser excluido: "; cin >> no_valor;
-            arvore.raiz = arvore.Excluir (arvore.raiz, no_valor);
-            cout <<"Valor excluido"<<endl;
+            cout <<"Digite o numero a ser excluido: "; cin >> no_numero;
+            arvore.raiz = arvore.Excluir (arvore.raiz, no_numero);
+            cout <<"\n--------------------"<<endl;
+            cout <<"numero excluido"<<endl;
+            cout <<"---------------------"<<endl;
             break;
         case 4:
             cout <<"\nImprimindo em pre-ordem"<<endl;
@@ -297,6 +301,7 @@ int main (){
             arvore.Em_Ordem (arvore.raiz);
             cout <<"\nImprimindo em pos-ordem"<<endl;
             arvore.Pos_Ordem (arvore.raiz);
+            cout <<endl;
             break;
         case 5:
             cout<<"\nA altura da arvore e: "<<arvore.Altura(arvore.raiz)<<endl;
@@ -310,11 +315,22 @@ int main (){
                 arvore.raiz = arvore.Del_Arvore(arvore.raiz);
             }
             break;
+        case 0:
+            break;
         default:
+            cout <<"\n--------------------------------"<<endl;
+            cout <<"Digite uma opcao contida no menu!"<<endl;
+            cout <<"---------------------------------"<<endl;
             break;
         }
 
     }while (menu !=0 );
+
+    cout <<"\n-----------"<<endl;
+    cout <<"Saindo..."<<endl;
+    cout <<"-----------\n\n";
     
 return 0;
 }
+
+
